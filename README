@@ -32,11 +32,11 @@ BASIC OPERATION (with Python):
     True
     
 CUSTOMIZING THE CRYPT:
-Let's weaken our password hashing scheme.
-  - Decrease the salt length from default 8 to 2.
-  - Decrease the iteration round from default 4096 to 10.
-  - Select FSHP0 with SHA-1 as the underlying hash algorithm.
+Let's set a higher password storage security baseline.
+  - Increase the salt length from default 8 to 16.
+  - Increase the hash rounds from default 4096 to 8129.
+  - Select FSHP3 with SHA-512 as the underlying hash algorithm.
 
-  >>> fsh = fshp.crypt('ExecuteOrder66', saltlen=2, rounds=10, variant=0)
+  >>> fsh = fshp.crypt('ExecuteOrder66', saltlen=16, rounds=8192, variant=3)
   >>> print fsh
-  {FSHP0|2|10}Nge7yRT/vueEGVFPIxcDjiaHQGFQaQ==
+  {FSHP3|16|8192}0aY7rZQ+/PR+Rd5/I9ssRM7cjguyT8ibypNaSp/U1uziNO3BVlg5qPUng+zHUDQC3ao/JbzOnIBUtAeWHEy7a2vZeZ7jAwyJJa2EqOsq4Io=
