@@ -34,7 +34,7 @@ BASIC OPERATION (with Python):
 CUSTOMIZING THE CRYPT:
 Let's set a higher password storage security baseline.
   - Increase the salt length from default 8 to 16.
-  - Increase the hash rounds from default 4096 to 8129.
+  - Increase the hash rounds from default 4096 to 8192.
   - Select FSHP3 with SHA-512 as the underlying hash algorithm.
 
   >>> fsh = fshp.crypt('ExecuteOrder66', saltlen=16, rounds=8192, variant=3)
