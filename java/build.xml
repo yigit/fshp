@@ -1,0 +1,31 @@
+<project name="FSHP" default="dist" basedir=".">
+  <property name="src" location="src"/>
+  <property name="build" location="build"/>
+  <property name="dist" location="dist"/>
+  <property name="extlib" location="extlib"/>
+  
+  <target name="init">
+    <tstamp/>
+    <mkdir dir="${build}"/>
+  </target>
+  
+  <target name="compile" depends="init">
+    <javac srcdir="${src}" destdir="${build}">
+      <classpath>
+        <fileset dir="${extlib}">
+          <include name="**/*.jar"/>
+        </fileset>
+      </classpath>
+    </javac>
+  </target>
+  
+  <target name="dist" depends="compile">
+    <mkdir dir="${dist}/lib"/>
+    <jar jarfile="${dist}/lib/fshp-${DSTAMP}.jar" basedir="${build}"/>
+  </target>
+  
+  <target name="clean">
+    <delete dir="${build}"/>
+    <delete dir="${dist}"/>
+  </target>
+</project>
