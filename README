@@ -21,6 +21,7 @@ IMPLEMENTATIONS
   - PHP5  : Tested with 5.2.6
   - Java  : Tested with 1.4, 1.5, 1.6.
             Dependency: Apache Commons - Codec (Base64)
+  - Perl  : Tested with 5.8.8
 
 Everyone is more than welcome to create missing language implementations or
 polish the current ones.
