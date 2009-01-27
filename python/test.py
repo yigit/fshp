@@ -34,9 +34,9 @@ class TestFSHPCryptAndValidate(unittest.TestCase):
             self.assertEqual(genhash, v['hash'])
 
 
-    def test_validate(self):
+    def test_check(self):
         for v in self.test_vectors:
-            self.failUnless(fshp.validate(v['passwd'], v['hash']))
+            self.failUnless(fshp.check(v['passwd'], v['hash']))
 
 
 if __name__ == '__main__':

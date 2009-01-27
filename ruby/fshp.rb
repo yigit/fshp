@@ -40,7 +40,7 @@ class FSHP
     return meta + b64saltdigest
   end
   
-  def FSHP.validate(passwd, ciphertext)
+  def FSHP.check(passwd, ciphertext)
     # Regular expression match. Yes, it's ugly.
     return false if (meta = ciphertext.match(@@fshp_regex)).nil?
     

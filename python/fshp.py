@@ -21,7 +21,7 @@ BASIC OPERATION:
     >>> fsh = fshp.crypt('OrpheanBeholderScryDoubt')
     >>> print fsh
     {FSHP1|8|4096}GVSUFDAjdh0vBosn1GUhzGLHP7BmkbCZVH/3TQqGIjADXpc+6NCg3g==
-    >>> fshp.validate('OrpheanBeholderScryDoubt', fsh)
+    >>> fshp.check('OrpheanBeholderScryDoubt', fsh)
     True
     
 CUSTOMIZING THE CRYPT:
@@ -104,7 +104,7 @@ def crypt(passwd, salt=None, saltlen=8, rounds=4096, variant=1):
     
     return meta + b64saltdigest
 
-def validate(passwd, ciphertext):
+def check(passwd, ciphertext):
     """Check if ``ciphertext`` is an FSHP hash of ``password``.
     
     Return value is boolean.

@@ -31,10 +31,10 @@ class TC_FSHP < Test::Unit::TestCase
     end
   end
   
-  def test_validate
+  def test_check
     @test_vectors.each do |v|
-      self.assert FSHP.validate(v[:passwd], v[:hash]), \
-                  "FSHP#validate FAIL: variant #{v[:opts][:v]}"
+      self.assert FSHP.check(v[:passwd], v[:hash]), \
+                  "FSHP#check FAIL: variant #{v[:opts][:v]}"
     end
   end
 end

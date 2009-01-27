@@ -47,8 +47,8 @@
     }
     
     foreach ($test_vectors as $v) {
-        $asserted_case = "FSHP::validate() - variant " . $v['opts']['v'];
-        assert(FSHP::validate($v['passwd'], $v['hash']));
+        $asserted_case = "FSHP::check() - variant " . $v['opts']['v'];
+        assert(FSHP::check($v['passwd'], $v['hash']));
     }
     
     if ($assertion_errors > 0) {

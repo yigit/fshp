@@ -32,11 +32,11 @@ import org.apache.commons.codec.binary.Base64;
  * 
  * SECURITY:
  * Default FSHP1 uses 8 byte salts, with 4096 iterations of SHA-256 hashing.
- *   - 8 byte salt renders rainbow table attacks impractical by multiplying the
- *     required space with 2^64.
+ *   - 8 byte salt renders rainbow table attacks impractical by multiplying
+ *     required table space with 2^64.
  *   - 4096 iterations causes brute force attacks to be fairly expensive.
  *   - There are no known attacks against SHA-256 to find collisions with
- *     a computational effort of fewer than 2^128 operations at the time of
+ *     a computational effort fewer than 2^128 operations at the time of
  *     this release.
  *
  * @version 1.0
@@ -165,10 +165,10 @@ public class FSHP  {
 	 * @param ciphertext Hashed Password to match aganist.
 	 * @return Boolean
 	 */
-	public static boolean validate(String passwd, String ciphertext)
+	public static boolean check(String passwd, String ciphertext)
 		throws Exception
 	{
-		return FSHP.validate(passwd.getBytes("UTF-8"), ciphertext);
+		return FSHP.check(passwd.getBytes("UTF-8"), ciphertext);
 	}
 	
 	
@@ -179,7 +179,7 @@ public class FSHP  {
 	 * @param ciphertext Hashed Password to match aganist.
 	 * @return Boolean
 	 */	
-	public static boolean validate(byte[] passwd, String ciphertext)
+	public static boolean check(byte[] passwd, String ciphertext)
 		throws Exception
 	{
 		/* Regular expression match. Yes, it's ugly. */

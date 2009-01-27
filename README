@@ -19,16 +19,18 @@ IMPLEMENTATIONS
   - Python: Tested with 2.3.5 (w/ hashlib), 2.5.1, 2.6.1
   - Ruby  : Tested with 1.8.6
   - PHP5  : Tested with 5.2.6
+  - Java  : Tested with 1.4, 1.5, 1.6.
+            Dependency: Apache Commons - Codec (Base64)
 
 Everyone is more than welcome to create missing language implementations or
 polish the current ones.
 
     
 BASIC OPERATION (with Python):
-    >>> fsh = fshp.crypt('OrpheanBeholderScryDoubt')
-    >>> print fsh
+    >>> hashed_pw = fshp.crypt('OrpheanBeholderScryDoubt')
+    >>> print hashed_pw
     {FSHP1|8|4096}GVSUFDAjdh0vBosn1GUhzGLHP7BmkbCZVH/3TQqGIjADXpc+6NCg3g==
-    >>> fshp.validate('OrpheanBeholderScryDoubt', fsh)
+    >>> fshp.check('OrpheanBeholderScryDoubt', hashed_pw)
     True
     
 CUSTOMIZING THE CRYPT:
@@ -37,6 +39,6 @@ Let's set a higher password storage security baseline.
   - Increase the hash rounds from default 4096 to 8192.
   - Select FSHP3 with SHA-512 as the underlying hash algorithm.
 
-  >>> fsh = fshp.crypt('ExecuteOrder66', saltlen=16, rounds=8192, variant=3)
-  >>> print fsh
+  >>> hashed_pw = fshp.crypt('ExecuteOrder66', saltlen=16, rounds=8192, variant=3)
+  >>> print hashed_pw
   {FSHP3|16|8192}0aY7rZQ+/PR+Rd5/I9ssRM7cjguyT8ibypNaSp/U1uziNO3BVlg5qPUng+zHUDQC3ao/JbzOnIBUtAeWHEy7a2vZeZ7jAwyJJa2EqOsq4Io=

@@ -38,7 +38,7 @@ class FSHP
         return $meta . $b64saltdigest;
     }
     
-    function validate($passwd, $ciphertext)
+    function check($passwd, $ciphertext)
     {
         // Regular expression match. Yes, it's ugly.
         if (preg_match(self::fshp_regex, $ciphertext, $meta) == FALSE ||
