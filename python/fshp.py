@@ -4,7 +4,8 @@ Fairly Secure Hashed Password (FSHP) is a salted, iteratively hashed
 password hashing implementation.
 
 Design principle is similar with PBKDF1 specification in RFC 2898 
-(a.k.a: PKCS #5: Password-Based Cryptography Specification Version 2.0.)
+(a.k.a: PKCS #5: Password-Based Cryptography Specification Version 2.0)
+
 FSHP allows choosing the salt length, number of iterations and the
 underlying cryptographic hash function among SHA-1 and SHA-2 (256, 384, 512).
 
@@ -18,11 +19,11 @@ Default FSHP1 uses 8 byte salts, with 4096 iterations of SHA-256 hashing.
     this release.
   
 BASIC OPERATION:
-    >>> fsh = fshp.crypt('OrpheanBeholderScryDoubt')
-    >>> print fsh
-    {FSHP1|8|4096}GVSUFDAjdh0vBosn1GUhzGLHP7BmkbCZVH/3TQqGIjADXpc+6NCg3g==
-    >>> fshp.check('OrpheanBeholderScryDoubt', fsh)
-    True
+  >>> fsh = fshp.crypt('OrpheanBeholderScryDoubt')
+  >>> print fsh
+  {FSHP1|8|4096}GVSUFDAjdh0vBosn1GUhzGLHP7BmkbCZVH/3TQqGIjADXpc+6NCg3g==
+  >>> fshp.check('OrpheanBeholderScryDoubt', fsh)
+  True
     
 CUSTOMIZING THE CRYPT:
 Let's set a higher password storage security baseline.
@@ -44,9 +45,16 @@ import re
 
 
 __author__ = 'Berk D. Demir <bdd@mindcast.org>'
-__copyright__ = 'Copyright (c) 2008 Berk D. Demir'
-__license__ = 'Public Domain'
-__version__ = '1.0'
+__license__ = """
+Authors of this computer software disclaim their respective copyright
+on the source code and related documentation, thus releasing their work
+to Public Domain.
+
+In case you are forced by your lawyer to get a copyright license,
+you may contact any of the authors to get this software (and its related
+documentation) with a BSD type license.
+"""
+__version__ = '0.2.0'
 
 
 FSHP_META_FMTSTR = '{FSHP%d|%d|%d}'

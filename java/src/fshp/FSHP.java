@@ -1,10 +1,17 @@
 /*
- * @(#) FSHP.java	1.0 2009/01/8
+ * @(#) FSHP.java	0.2.0 2009/01/28
  * 
- * Copyright (c) 2009 Huseyin Cigeroglu
- * Copyright (c) 2009 Berk D. Demir
+ * Authors:
+ *   - Huseyin Cigeroglu <huseyincigeroglu@gmail.com>
+ *   - Berk D. Demir <bdd@mindcast.org>
  *
- * This code is in Public Domain.
+ * Authors of this computer software disclaim their respective copyright
+ * on the source code and related documentation, thus releasing their work
+ * to Public Domain.
+ *
+ * In case you are forced by your lawyer to get a copyright license,
+ * you may contact any of the authors to get this software (and its related
+ * documentation) with a BSD type license.
  */
 
 package fshp;
@@ -39,7 +46,7 @@ import org.apache.commons.codec.binary.Base64;
  *     a computational effort fewer than 2^128 operations at the time of
  *     this release.
  *
- * @version 1.0
+ * @version 0.2.0
  * @author Huseyin Cigeroglu
  * @author Berk D. Demir
  */

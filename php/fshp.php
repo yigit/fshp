@@ -1,4 +1,14 @@
 <?php
+# Author: Berk D. Demir <bdd@mindcast.org>
+# 
+# Authors of this computer software disclaim their respective copyright
+# on the source code and related documentation, thus releasing their work
+# to Public Domain.
+#
+# In case you are forced by your lawyer to get a copyright license,
+# you may contact any of the authors to get this software (and its related
+# documentation) with a BSD type license.
+
 class FSHP
 {
     const fshp_meta_fmtstr = "{FSHP%d|%d|%d}";
