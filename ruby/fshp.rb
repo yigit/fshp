@@ -19,6 +19,10 @@ class FSHP
     # Type cast to integer.
     saltlen, rounds, variant = [saltlen, rounds, variant].map { |e| e.to_i }
     
+    # Ensure we have sane values for salt length and rounds.
+    saltlen = 0 if saltlen < 0
+    rounds  = 1 if rounds  < 1
+     
     # Do we have a 'salt' already?
     if salt.nil?
       # Fill 'salt' with 'saltlen' random bytes.
@@ -42,7 +46,9 @@ class FSHP
     end
     
     digest = hash.update(salt + passwd).digest
-    (rounds - 1).times { digest = hash.reset.update(digest).digest }
+    (rounds - 1).times {
+      digest = hash.reset.update(digest).digest
+    }
     
     meta = format(@@fshp_meta_fmtstr, variant, saltlen, rounds)
     b64saltdigest = Base64.encode64(salt + digest).delete("\n")

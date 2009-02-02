@@ -54,7 +54,7 @@ In case you are forced by your lawyer to get a copyright license,
 you may contact any of the authors to get this software (and its related
 documentation) with a BSD type license.
 """
-__version__ = '0.2.0'
+__version__ = '0.2.1'
 
 
 FSHP_META_FMTSTR = '{FSHP%d|%d|%d}'
@@ -88,6 +88,10 @@ def crypt(passwd, salt=None, saltlen=8, rounds=4096, variant=1):
     # Type cast to integer.
     saltlen, rounds, variant = map(int, (saltlen, rounds, variant))
     
+    # Ensure we have sane values for salt length and rounds.
+    if saltlen < 0: saltlen = 0
+    if rounds  < 1: rounds  = 1
+    
     if salt is None:
         salt = ''
         for i in range(saltlen):
@@ -102,7 +106,7 @@ def crypt(passwd, salt=None, saltlen=8, rounds=4096, variant=1):
     h = hashlib.new(algorithm[variant])
     h.update(salt + passwd)
     digest = h.digest()
-    for i in range(rounds - 1):
+    for i in range(1, rounds):
         h = hashlib.new(algorithm[variant])
         h.update(digest)
         digest = h.digest()

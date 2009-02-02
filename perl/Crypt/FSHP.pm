@@ -15,7 +15,7 @@ use vars qw(@ISA @EXPORT $VERSION);
 require Exporter;
 @ISA = qw(Exporter);
 @EXPORT = qw(fshp_crypt fshp_check);
-$VERSION = '0.2.0';
+$VERSION = '0.2.1';
 
 our $FSHP_META_FMTSTR = "{FSHP%d|%d|%d}%s";
 our $FSHP_REGEX = qr /^\{FSHP(\d+)\|(\d+)\|(\d+)\}([\d\w\+\/=]+)$/;
@@ -38,6 +38,10 @@ sub crypt ($;$$$$)
 	defined($saltlen)	|| ($saltlen = 8);
 	defined($rounds)	|| ($rounds  = 4096);
 	defined($variant)	|| ($variant = 1);
+	
+	# Ensure we have sane values for salt length and rounds.
+	$saltlen	= 0 if ($saltlen < 0);
+	$rounds		= 1 if ($rounds < 1);
 
 	unless (defined($salt)) {
 		$salt = '';
@@ -54,7 +58,7 @@ sub crypt ($;$$$$)
 	my ($hash, $digest, $b64saltdigest);
 	$hash = Digest->new($FSHP_VARIANT_ALGOMAP{$variant});
 	$digest = $hash->add($salt . $passwd)->digest();
-	for (my $i = 0; $i < $rounds - 1; $i++) {
+	for (my $i = 1; $i < $rounds; $i++) {
 		$digest = $hash->reset()->add($digest)->digest();
 	}
 

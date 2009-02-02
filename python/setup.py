@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
     name='fshp',
-    version='0.2.0',
+    version='0.2.1',
     license='Public Domain',
     
     py_modules=['fshp'],

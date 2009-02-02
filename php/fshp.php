@@ -20,6 +20,10 @@ class FSHP
         $saltlen = (int) $saltlen;
         $rounds  = (int) $rounds;
         $variant = (int) $variant;
+
+        # Ensure we have sane values for salt length and rounds.
+        if ($saltlen < 0) $saltlen = 0;
+        if ($rounds  < 1) $rounds  = 1;
         
         # Do we have a 'salt' already?
         if ($salt == NULL) {
@@ -40,7 +44,7 @@ class FSHP
         }
         
         $rawdigest = hash($hash_algo, $salt . $passwd, TRUE);
-        for ($i = 0; $i < $rounds - 1; $i++)
+        for ($i = 1; $i < $rounds; $i++)
             $rawdigest = hash($hash_algo, $rawdigest, TRUE);
         
         $meta = sprintf(self::fshp_meta_fmtstr, $variant, $saltlen, $rounds);

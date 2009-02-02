@@ -1,5 +1,5 @@
 /*
- * @(#) FSHP.java	0.2.0 2009/01/28
+ * @(#) FSHP.java	0.2.1 2009/02/02
  * 
  * Authors:
  *   - Huseyin Cigeroglu <huseyincigeroglu@gmail.com>
@@ -46,7 +46,7 @@ import org.apache.commons.codec.binary.Base64;
  *     a computational effort fewer than 2^128 operations at the time of
  *     this release.
  *
- * @version 0.2.0
+ * @version 0.2.1
  * @author Huseyin Cigeroglu
  * @author Berk D. Demir
  */
@@ -118,6 +118,10 @@ public class FSHP  {
 	public static String crypt(byte[] passwd, byte[] salt, int saltlen, int rounds, int variant)
 		throws Exception
 	{
+		// Ensure we have sane values for salt length and rounds.
+		if (saltlen < 0) saltlen = 0;
+		if (rounds  < 1) rounds  = 1;
+	
 		if (salt == null) {
 			salt = new byte[saltlen];
 			new SecureRandom().nextBytes(salt);
