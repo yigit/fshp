@@ -31,11 +31,11 @@ sub fshp_crypt ($;$$$$) { &crypt; }
 sub fshp_check ($$) { &check; }
 
 sub crypt ($;$$$$)
-{	
+{
 	my ($passwd, $salt, $saltlen, $rounds, $variant) = @_;
 
-    # Passwd undefined? Not using strict or just trying to abuse.
-    defined($passwd) || croak('Mandatory argument $passwd can not be undefined');
+	# Passwd undefined? Not using strict or just trying to abuse.
+	defined($passwd) || croak('Mandatory argument $passwd can not be undefined');
     
 	# Populate with default values if undef.
 	defined($saltlen)	|| ($saltlen = 8);
