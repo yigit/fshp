@@ -18,7 +18,7 @@ require Exporter;
 $VERSION = '0.2.1';
 
 our $FSHP_META_FMTSTR = "{FSHP%d|%d|%d}%s";
-our $FSHP_REGEX = qr /^\{FSHP(\d+)\|(\d+)\|(\d+)\}([\d\w\+\/=]+)$/;
+our $FSHP_REGEX = qr/^\{FSHP(\d+)\|(\d+)\|(\d+)\}([\d\w\+\/=]+)$/;
 our %FSHP_VARIANT_ALGOMAP = (
 	0 => 'SHA-1',
 	1 => 'SHA-256',
@@ -34,6 +34,9 @@ sub crypt ($;$$$$)
 {	
 	my ($passwd, $salt, $saltlen, $rounds, $variant) = @_;
 
+    # Passwd undefined? Not using strict or just trying to abuse.
+    defined($passwd) || croak('Mandatory argument $passwd can not be undefined');
+    
 	# Populate with default values if undef.
 	defined($saltlen)	|| ($saltlen = 8);
 	defined($rounds)	|| ($rounds  = 4096);
@@ -91,8 +94,10 @@ FSHP - Fairly Secure Hashed Passwords. A PKCS#5 PBKDF1 similar implementation.
 
   use Crypt::FSHP;
 
-  $hashed_pw = fshp_crypt("OrpheanBeholderScryDoubt");
-  print "OK\n" if fshp_check("OrpheanBeholderScryDoubt", $hashed_pw);
+  $passwd_hash = fshp_crypt($passwd_clear);
+  if (fshp_check($passwd_clear, $passwd_hash)) {
+      let_user_in();
+  }
 
 =head1 DESCRIPTION
 
@@ -118,8 +123,11 @@ If you prefer not to import these routines into your namespace, you can
 call them as:
 
     use Crypt::FSHP ();
-    $hashed_pw = Crypt::FSHP::crypt($passwd);
-    print "OK\n" if Crypt::FSHP::check($passwd, $hashed_pw);
+    
+    $passwd_hash = Crypt::FSHP::crypt($passwd_clear);
+    if (Crypt::FSHP::check($passwd_clear, $passwd_hash)) {
+        let_user_in();
+    }
 
 =head2 SECURITY
 
@@ -134,8 +142,8 @@ the required space with 2^64.
 =item * 4096 iterations causes brute force attacks to be fairly expensive.
 
 =item * There are no known attacks against SHA-256 to find collisions with
-    a computational effort of fewer than 2^128 operations at the time of
-    this release.
+a computational effort of fewer than 2^128 operations at the time of
+this release.
 
 =back
 
