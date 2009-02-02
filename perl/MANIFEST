@@ -2,3 +2,4 @@ Makefile.PL
 MANIFEST
 README
 lib/Crypt/FSHP.pm
+t/test.t

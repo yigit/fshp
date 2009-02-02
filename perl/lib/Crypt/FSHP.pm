@@ -15,7 +15,7 @@ use vars qw(@ISA @EXPORT $VERSION);
 require Exporter;
 @ISA = qw(Exporter);
 @EXPORT = qw(fshp_crypt fshp_check);
-$VERSION = '0.2.1';
+$VERSION = '0.2.2';
 
 our $FSHP_META_FMTSTR = "{FSHP%d|%d|%d}%s";
 our $FSHP_REGEX = qr/^\{FSHP(\d+)\|(\d+)\|(\d+)\}([\d\w\+\/=]+)$/;
