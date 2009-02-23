@@ -12,8 +12,8 @@ require 'base64'
 require 'digest'
 
 class FSHP
-  @@fshp_meta_fmtstr = '{FSHP%d|%d|%d}'
-  @@fshp_regex = /\{FSHP(\d+)\|(\d+)\|(\d+)\}([\d\w\+\/=]+)/
+  FSHP_META_FMTSTR = '{FSHP%d|%d|%d}'
+  FSHP_REGEX = /\{FSHP(\d+)\|(\d+)\|(\d+)\}([\d\w\+\/=]+)/
   
   def FSHP.crypt(passwd, salt=nil, saltlen=8, rounds=4096, variant=1)
     # Type cast to integer.
@@ -42,7 +42,7 @@ class FSHP
     when 3
       hash = Digest::SHA2.new(bitlen=512)
     else
-      throw Exception.new("Unsupported FSHP variant '#{variant}'.")
+      raise ArgumentError, "Unsupported FSHP variant: #{variant}."
     end
     
     digest = hash.update(salt + passwd).digest
@@ -50,7 +50,7 @@ class FSHP
       digest = hash.reset.update(digest).digest
     }
     
-    meta = format(@@fshp_meta_fmtstr, variant, saltlen, rounds)
+    meta = format(FSHP_META_FMTSTR, variant, saltlen, rounds)
     b64saltdigest = Base64.encode64(salt + digest).delete("\n")
     
     return meta + b64saltdigest
@@ -58,7 +58,7 @@ class FSHP
   
   def FSHP.check(passwd, ciphertext)
     # Regular expression match. Yes, it's ugly.
-    return false if (meta = ciphertext.match(@@fshp_regex)).nil?
+    return false if (meta = ciphertext.match(FSHP_REGEX)).nil?
     
     variant, saltlen, rounds, b64saltdigest = meta[1,5]
     
@@ -68,3 +68,4 @@ class FSHP
     return crypt(passwd, salt, saltlen, rounds, variant) == ciphertext
   end
 end
+
