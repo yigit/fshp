@@ -57,7 +57,6 @@
  *
  * @category Encryption
  * @package  Crypt_FSHP
- * @version  Release: @release_version@
  * @author   Berk D. Demir <bdd@mindcast.org>
  * @license  http://creativecommons.org/licenses/publicdomain/ Public Domain
  *           Author(s) of this computer software disclaim their respective
@@ -66,6 +65,7 @@
  *           In case you are forced by your lawyer to get a copyright license,
  *           you may contact any of the authors to get this software
  *           (and its related documentation) with a BSD type license.
+ * @version  Release: @release_version@
  * @link     http://github.com/bdd/fshp Git Repository
  * @link     http://pear.php.net/package/Crypt_FSHP
  * @since    File available since Release 0.2.2

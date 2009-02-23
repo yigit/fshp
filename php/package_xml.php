@@ -11,7 +11,7 @@ $options = array(
     'baseinstalldir'    => 'Crypt',
     'packagedirectory'  => dirname(__FILE__),
     'clearcontents'     => true,
-    'ignore'            => array('package_xml.php', '.svn', '.cvs*'),
+    'ignore'            => array('package_xml.php'),
     'dir_roles'         => array('test' => 'test')
 );
 $packagexml->setOptions($options);
@@ -52,8 +52,8 @@ $packagexml->setLicense('Public Domain',
 $packagexml->addRelease();
 $packagexml->generateContents();
 
-$packagexml->setAPIVersion('0.2');
-$packagexml->setReleaseVersion('0.2.2');
+$packagexml->setAPIVersion('1.0');
+$packagexml->setReleaseVersion('1.0.0');
 $packagexml->setReleaseStability('stable');
 $packagexml->setAPIStability('stable');
 $packagexml->addGlobalReplacement('package-info', '@release_version@', 'version');
