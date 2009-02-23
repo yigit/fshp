@@ -35,7 +35,7 @@ class API extends PHPUnit_Framework_TestCase
     
     public function testAutofixSaltlenAndRounds()
     {
-        $passwd = '';
+        $passwd = 'fshp';
         $ciphertext = Crypt_FSHP::crypt($passwd, null, -1, -1, 1);
         $re = preg_match(Crypt_FSHP::FSHP_REGEX, $ciphertext, $meta);
         
@@ -53,8 +53,7 @@ class API extends PHPUnit_Framework_TestCase
         $this->assertTrue($meta[3] == 1); // fixed -1 rounds  to 1
         
         // ciphertext is a hash of our cleartext passwd.
-        $this->assertTrue(Crypt_FSHP::check('', $ciphertext));
+        $this->assertTrue(Crypt_FSHP::check($passwd, $ciphertext));
     }
-
 }
 ?>
