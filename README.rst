@@ -28,11 +28,26 @@ Default FSHP1 uses 8 byte salts, with 4096 iterations of SHA-256 hashing.
 Implementations
 ---------------
 - Python: Tested with 2.3.5 *(w/ hashlib)*, 2.5.1, 2.6.1
+    
+    Available in PyPI. http://pypi.python.org/pypi/fshp
+    
+    *Install:* easy_install fshp
+      
 - Ruby  : Tested with 1.8.6
+    
+    Available in RubyForge. http://rubyforge.org/projects/fshp/
+    
+    *Install:* gem install fshp
+
+- Perl  : Tested with 5.8.8
+    
+    Available in CPAN http://search.cpan.org/~bdd/Crypt-FSHP/
+    
+    *Install:* perl -MCPAN -e 'install Crypt::FSHP'
+      
 - PHP5  : Tested with 5.2.6
 - Java  : Tested with 1.4, 1.5, 1.6.
   Dependency: Apache Commons - Codec (Base64)
-- Perl  : Tested with 5.8.8
 
 Everyone is more than welcome to create missing language implementations or
 polish the current ones.
