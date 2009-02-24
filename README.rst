@@ -55,6 +55,12 @@ polish the current ones.
 
 Basic Operation
 ---------------
+Calling *crypt()* with a single parameter of cleartext password, implies
+the default configuration of FSHP1.
+- *salt length*: 8 bytes long random salt will be generated.
+- *hash rounds*: 4096 iterations of hashing will be applied in output chaining mode.
+- *FSHP variant*: Variant 1 uses SHA-256 as underlying hash function.
+
 >>> hashed_pw = fshp.crypt('OrpheanBeholderScryDoubt')
 >>> print hashed_pw
 {FSHP1|8|4096}GVSUFDAjdh0vBosn1GUhzGLHP7BmkbCZVH/3TQqGIjADXpc+6NCg3g==
