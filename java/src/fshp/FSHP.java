@@ -27,24 +27,35 @@ import java.security.NoSuchAlgorithmException;
 import org.apache.commons.codec.binary.Base64;
 
 /**
- * FSHP: Fairly Secure Hashed Password
- * 
+ * FSHP: Fairly Secure Hashed Password.
+ * <p>
  * Fairly Secure Hashed Password (FSHP) is a salted, iteratively hashed
  * password hashing implementation.
- * 
+ * </p>
+ * <p>
  * Design principle is similar with PBKDF1 specification in RFC 2898 
- * (a.k.a: PKCS #5: Password-Based Cryptography Specification Version 2.0.)
+ * <em>(a.k.a: PKCS #5: Password-Based Cryptography Specification Version 2.0.)</em>
+ * <p>
  * FSHP allows choosing the salt length, number of iterations and the
  * underlying cryptographic hash function among SHA-1 and SHA-2 (256, 384, 512).
+ * </p>
  * 
- * SECURITY:
+ * <h3>SECURITY:</h3>
  * Default FSHP1 uses 8 byte salts, with 4096 iterations of SHA-256 hashing.
- *   - 8 byte salt renders rainbow table attacks impractical by multiplying
- *     required table space with 2^64.
- *   - 4096 iterations causes brute force attacks to be fairly expensive.
- *   - There are no known attacks against SHA-256 to find collisions with
- *     a computational effort fewer than 2^128 operations at the time of
- *     this release.
+ * <ul>
+ * <li>
+ *   8 byte salt renders rainbow table attacks impractical by multiplying
+ *   required table space with 2^64.
+ * </li>
+ * <li>
+ *   4096 iterations causes brute force attacks to be fairly expensive.
+ * </li>
+ * <li>
+ *   There are no known attacks against SHA-256 to find collisions with
+ *   a computational effort fewer than 2^128 operations at the time of
+ *   this release.
+ * </li>
+ * </ul>
  *
  * @version 0.2.1
  * @author Huseyin Cigeroglu
@@ -56,14 +67,16 @@ public class FSHP  {
 	
 	
 	/**
-	 * Returns the FSHP hash of {@link passwd} with default parameters.
-	 * - Salt Length =  8
-	 * - Number of Rounds = 4096
-	 * - Variant = 1 (SHA-256)
+	 * Returns the FSHP hash of <tt>passwd</tt> with default parameters.
+	 * <ul>
+	 * <li>Salt Length =  <tt>8</tt></li>
+	 * <li>Number of Rounds = <tt>4096</tt></li>
+	 * <li>Variant = <tt>1</tt> <em>(SHA-256)</em></li>
+	 * </ul>
 	 * 
 	 * @param passwd String Password.
 	 *               Contents will be encoded to bytes with UTF-8.
-	 * @return       FSHP hash of {@link passwd}
+	 * @return       FSHP hash of <tt>passwd</tt>
 	 */
 	public static String crypt(String passwd)
 		throws Exception
@@ -74,7 +87,7 @@ public class FSHP  {
 	
 	
 	/**
-	 * Returns the FSHP hash of {@link passwd}
+	 * Returns the FSHP hash of <tt>passwd</tt>
 	 * 
 	 * @param passwd String Password.
 	 *               Contents will be encoded to bytes with UTF-8.
@@ -84,11 +97,14 @@ public class FSHP  {
 	 * @param rounds Number of hashing rounds.
 	 * @param variant FSHP variant indicating the behaviour and/or
 	 *        hashing algorithm to be used.
-	 *        0: SHA-1 (not recommended)
-	 *        1: SHA-256
-	 *        2: SHA-384
-	 *        3: SHA-512
-	 * @return       FSHP hash of {@link passwd}
+	 * <ul>
+	 *        <li><tt>0: SHA-1</tt> <em>(not recommended)</em></li>
+	 *        <li><tt>1: SHA-256</tt></li>
+	 *        <li><tt>2: SHA-384</tt></li>
+	 *        <li><tt>3: SHA-512</tt></li>
+	 * </ul>
+	 *
+	 * @return       FSHP hash of <tt>passwd</tt>
 	 */	
 	public static String crypt(String passwd, int saltlen, int rounds, int variant)
 		throws Exception
@@ -99,7 +115,7 @@ public class FSHP  {
 	
 	
 	/**
-	 * Returns the hash of {@link passwd} 
+	 * Returns the hash of <tt>passwd</tt> 
 	 *
 	 * @param passwd Byte representation of clear text password.
 	 * @param salt Byte representation of salt to be used in hashing.
@@ -108,12 +124,14 @@ public class FSHP  {
 	 *        auto generated.
 	 * @param rounds Number of hashing rounds.
 	 * @param variant FSHP variant indicating the behaviour and/or
-	 *        hashing algorithm to be used.
-	 *        0: SHA-1 (not recommended)
-	 *        1: SHA-256
-	 *        2: SHA-384
-	 *        3: SHA-512
-	 * @return       FSHP hash of {@link passwd}
+	 * <ul>
+	 *        <li><tt>0: SHA-1</tt> <em>(not recommended)</em></li>
+	 *        <li><tt>1: SHA-256</tt></li>
+	 *        <li><tt>2: SHA-384</tt></li>
+	 *        <li><tt>3: SHA-512</tt></li>
+	 * </ul>
+	 *
+	 * @return       FSHP hash of <tt>passwd</tt>
 	 */	
 	public static String crypt(byte[] passwd, byte[] salt, int saltlen, int rounds, int variant)
 		throws Exception
