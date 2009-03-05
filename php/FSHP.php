@@ -160,7 +160,7 @@ class Crypt_FSHP
              */
             $message = "$variant. PHP hash() didn't recognize " .
                        "'$hash_algorithm' algorithm";
-            throw new Crypt_FSHP_UnsupportedVariantException($msg);
+            throw new Crypt_FSHP_UnsupportedVariantException($message);
         }
         
         for ($i = 1; $i < $rounds; $i++) {
