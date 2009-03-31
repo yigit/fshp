@@ -40,7 +40,6 @@ Let's set a higher password storage security baseline.
 
 import random
 import hashlib
-import base64
 import re
 
 
@@ -68,7 +67,7 @@ FSHP                            # fshp signature
 \|                              # meta separator
 (?P<rounds>\d+)                 # number of hash iterations
 \}                              # meta decorator, close
-(?P<b64saltdigest>[\d\w\+\/=]+) # Base64 encoded 'salt' + 'digest' 
+(?P<b64saltdigest>[\d\w\+\/=]+) # Base64 encoded 'salt' + 'digest'
 $                               # END
 """
 
@@ -128,9 +127,9 @@ def check(passwd, ciphertext):
     if match is None:
         return False
     m = match.groupdict()
-    
+
     # Decode base64 string, read first 'saltlen' bytes to get 'salt'.
-    salt = base64.decodestring(m['b64saltdigest'])[:int(m['saltlen'])]
-    
+    salt = m['b64saltdigest'].decode('base64')[:int(m['saltlen'])]
+
     return crypt(passwd, salt,
                  m['saltlen'], m['rounds'], m['variant']) == ciphertext
