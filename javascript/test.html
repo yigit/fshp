@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+  <title>FSHP JS Test</title>
+  <script type="text/javascript">
+
+
+  </script>
+</head>
+<body id="text" onload="">
+  FSHP JavaScript Test
+  <hr />
+  <script type="text/javascript" charset="utf-8" src="fshp.js"></script>
+
+  <script type="text/javascript">
+    var vectors = [
+        { passwd: 'test',
+          opts  : { variant: 0, salt: '', rounds: 1 },
+          ciphertext: "{FSHP0|0|1}qUqP5cyxm6YcTAhz05Hph5gvu9M="
+        },
+        { passwd: 'test',
+          opts  : { variant: 0, salt: 'salt', rounds: 100 },
+          ciphertext: "{FSHP0|4|100}c2FsdFqSuj1xoBdie04TL5Yyy3s8cby+"
+        },
+        { passwd: 'test',
+          opts  : { variant: 1, salt: 'salt', rounds: 1 },
+          ciphertext: "{FSHP1|4|1}c2FsdBvBo2HxcJK8evSy+Cv5GU6p7iyknrLlPjn1Vbwe6u10"
+        },
+        { passwd: 'UTF-8 Test: ğüşiöçĞÜŞİÖÇı',
+          opts  : { variant: 1, salt: 'salt', rounds: 1 },
+          ciphertext: "{FSHP1|4|1}c2FsdG098xJPlk8g2SToZwHAEhB0cmlo40U5G4YRAYcr31GU"
+        }
+    ];
+    
+    for (var i = 0; i < vectors.length; i++) {
+        var p = vectors[i].passwd;
+        var s = vectors[i].opts.salt;
+        var v = vectors[i].opts.variant;
+        var r = vectors[i].opts.rounds;
+        
+        document.write('Test #' + i + ': v='+ v + ' s="' + s + '"' + 
+                       ' r=' + r + ' --&gt ');
+        var c = FSHP.crypt(p, { variant: v, salt: s, rounds: r});
+        
+        document.write('[Crypt: ')
+        if (c == vectors[i].ciphertext)
+            document.write('OK]');
+        else
+            document.write('FAILED]');
+        
+        document.write('[Check: ');
+        if (FSHP.check(p, c))
+            document.write('OK]');
+        else
+            document.write('FAILED]');
+        
+        document.write('<br />\n');
+    }
+  </script>
+</body>
