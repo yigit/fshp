@@ -48,6 +48,7 @@ Implementations
 - PHP5  : Tested with 5.2.6
 - Java  : Tested with 1.4, 1.5, 1.6.
   Dependency: Apache Commons - Codec (Base64)
+- JavaScript: SHA-1 and SHA-256 support only. Tested with Safari 4, Firefox 3.0.
 
 Everyone is more than welcome to create missing language implementations or
 polish the current ones.
