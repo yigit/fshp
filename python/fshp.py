@@ -115,7 +115,7 @@ def crypt(passwd, salt=None, saltlen=8, rounds=4096, variant=1):
         digest = h.digest()
 
     meta = FSHP_META_FMTSTR % (variant, saltlen, rounds)
-    b64saltdigest = base64.encodestring(salt + digest).replace('\n', '')
+    b64saltdigest = (salt + digest).encode('base64').replace('\n', '')
 
     return meta + b64saltdigest
 
