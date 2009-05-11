@@ -4,13 +4,13 @@ setup(
     name='fshp',
     version='0.2.1',
     license='Public Domain',
-    
+
     py_modules=['fshp'],
 
     author='Berk D. Demir',
     author_email='bdd@mindcast.org',
     url='http://github.com/bdd/fshp',
-    
+
     classifiers=[
         'Topic :: Security :: Cryptography',
         'Topic :: Software Development :: Libraries',
@@ -34,7 +34,7 @@ What is FSHP?
 Fairly Secure Hashed Password (FSHP) is a salted, iteratively hashed
 password hashing implementation.
 
-Design principle is similar with PBKDF1 specification in RFC 2898 
+Design principle is similar with PBKDF1 specification in RFC 2898
 *(a.k.a: PKCS #5: Password-Based Cryptography Specification Version 2.0)*
 
 FSHP allows choosing the salt length, number of iterations and the
@@ -81,10 +81,11 @@ Let's set a higher password storage security baseline.
 - Increase the salt length from default 8 to 16.
 - Increase the hash rounds from default 4096 to 8192.
 - Select FSHP3 with SHA-512 as the underlying hash algorithm.
-    
+
 >>> hashed_pw = fshp.crypt('ExecuteOrder66', saltlen=16, rounds=8192, variant=3)
 >>> print hashed_pw
-{FSHP3|16|8192}0aY7rZQ+/PR+Rd5/I9ssRM7cjguyT8ibypNaSp/U1uziNO3BVlg5qPUng+zHUDQC3ao/JbzOnIBUtAeWHEy7a2vZeZ7jAwyJJa2EqOsq4Io=
+{FSHP3|16|8192}0aY7rZQ+/PR+Rd5/I9ssRM7cjguyT8ibypNaSp/U1uziNO3BVlg5qPUng+zHUDQ\
+C3ao/JbzOnIBUtAeWHEy7a2vZeZ7jAwyJJa2EqOsq4Io=
 
 """
 )
